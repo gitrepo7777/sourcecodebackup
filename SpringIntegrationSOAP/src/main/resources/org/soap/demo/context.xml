@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/integration"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jms="http://www.springframework.org/schema/integration/jms"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-3.0.xsd
+			http://www.springframework.org/schema/integration
+			http://www.springframework.org/schema/integration/spring-integration-2.0.xsd
+			http://www.springframework.org/schema/integration/jms
+			http://www.springframework.org/schema/integration/jms/spring-integration-jms-2.0.xsd">
+
+	<gateway id="gateway1" default-request-channel="jmsChannel"
+		service-interface="org.soap.demo.SampleGateway" />
+
+	<jms:outbound-gateway request-channel="jmsChannel"
+		request-destination="requestQueue" />
+
+	<jms:inbound-gateway request-destination="requestQueue"
+		request-channel="demoChannel" />
+
+	<chain input-channel="demoChannel">
+		<!-- Route the request to proper channel based on operation specified in Envelope Header -->	
+		<router>
+			<beans:bean
+				class="org.springframework.integration.xml.router.XPathSingleChannelRouter">
+				<beans:constructor-arg value="//operation" /> <!-- TODO: XPath Expression can be made better here :) -->
+			</beans:bean>
+		</router>
+	</chain>
+
+	<chain input-channel="add">	
+		<!-- Extract Request Payload from Envelope Body -->
+		<transformer>		
+			<beans:bean class="org.springframework.integration.xml.transformer.XsltPayloadTransformer">
+			    <beans:constructor-arg value="classpath:org/soap/demo/payload.xsl" />
+			    <beans:constructor-arg>
+			        <beans:bean class="org.springframework.integration.xml.transformer.ResultToStringTransformer" />
+			    </beans:constructor-arg>
+			</beans:bean>
+		</transformer>
+		<!-- Create a Java Request object from xml obtained -->
+		<transformer>
+			<beans:bean class="org.springframework.integration.xml.transformer.UnmarshallingTransformer">
+    			<beans:constructor-arg>
+        			<beans:bean class="org.springframework.oxm.castor.CastorMarshaller">
+		    			<beans:property name="mappingLocation" value="classpath:org/soap/demo/mapping.xml" />
+        			</beans:bean>
+    			</beans:constructor-arg>
+			</beans:bean>
+		</transformer>
+		<!-- Do the service and return result -->
+		<service-activator >
+			<beans:bean class="org.soap.demo.Service" />
+		</service-activator>
+		<!-- Add transformers to convert to SOAP response Envelope -->		
+	</chain>
+
+	<beans:import resource="/org/soap/demo/jms.xml" />
+
+</beans:beans>

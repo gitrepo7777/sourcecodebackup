@@ -1,0 +1,206 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>soap-demo</groupId>
+	<artifactId>soap-demo</artifactId>
+	<version>1.0</version>
+	
+	<properties>
+		<release.version>2.0.0.M4</release.version>
+		<spring.framework.version>3.0.2.RELEASE</spring.framework.version>
+	</properties>
+	
+	<dependencies>
+	
+		<dependency>
+			<groupId>javax.jms</groupId>
+			<artifactId>com.springsource.javax.jms</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>com.springsource.org.apache.activemq</artifactId>
+			<version>5.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>com.springsource.javax.management.j2ee</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+		
+		
+		
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>org.springframework.integration</artifactId>
+			<version>${release.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>org.springframework.integration.event</artifactId>
+			<version>${release.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>org.springframework.integration.file</artifactId>
+			<version>${release.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>org.springframework.integration.http</artifactId>
+			<version>${release.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>org.springframework.integration.httpinvoker</artifactId>
+			<version>${release.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>org.springframework.integration.jms</artifactId>
+			<version>${release.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>org.springframework.integration.mail</artifactId>
+			<version>${release.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>org.springframework.integration.rmi</artifactId>
+			<version>${release.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>org.springframework.integration.security</artifactId>
+			<version>${release.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>org.springframework.integration.stream</artifactId>
+			<version>${release.version}</version>
+		</dependency>
+		<dependency>
+				<groupId>org.springframework.integration</groupId>
+				<artifactId>org.springframework.integration.ws</artifactId>
+				<version>${release.version}</version>
+				
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>org.springframework.integration.xml</artifactId>
+			<version>${release.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.log4j</groupId>
+			<artifactId>com.springsource.org.apache.log4j</artifactId>
+			<version>1.2.15</version>
+		</dependency>
+		
+			
+		<dependency>
+			<groupId>org.codehaus.castor</groupId>
+			<artifactId>com.springsource.org.castor</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>com.springsource.org.apache.xmlbeans</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+		
+	</dependencies>
+	
+	
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.java</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resource</directory>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.xsl</include>
+				</includes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-reactor-plugin</artifactId>
+				<version>1.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<profiles>
+		<profile>
+			<id>classpath</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>copy-dependencies</id>
+								<phase>package</phase>
+								<goals>
+									<goal>copy-dependencies</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>lib</outputDirectory>
+									<overWriteReleases>false</overWriteReleases>
+									<overWriteSnapshots>false</overWriteSnapshots>
+									<overWriteIfNewer>true</overWriteIfNewer>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	
+	<repositories>
+		<repository>
+			<id>com.springsource.repository.bundles.release</id>
+			<name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/release</url>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.bundles.external</id>
+			<name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/external</url>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.bundles.milestone</id>
+			<name>SpringSource Enterprise Bundle Repository - External Bundle Milestones</name>
+			<url>http://repository.springsource.com/maven/bundles/milestone</url>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.bundles.snapshot</id>
+			<name>SpringSource Enterprise Bundle Repository - External Bundle Snapshots</name>
+			<url>http://repository.springsource.com/maven/bundles/snapshot</url>
+		</repository>
+	</repositories>
+	
+</project>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2001/12/soap-envelope" soap:encodingStyle="http://www.w3.org/2001/12/soap-encoding">
+	<soap:Header>
+	  <operation>add</operation>
+	</soap:Header>	
+	<soap:Body>
+		<data>
+			<number1>25</number1>
+			<number2>30</number2>
+		</data>
+	</soap:Body>
+</soap:Envelope>

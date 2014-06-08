@@ -1,0 +1,41 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+    <tx:annotation-driven/>
+      
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/NCAR_USERS"/>
+        <property name="username" value="tutorial"/>
+        <property name="password" value="tutorial"/>
+    </bean>
+    
+    <bean id="transactionManager" 
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>    
+    <bean id="userManager" class="edu.ucar.cisl.ncarUsers.bll.UserManagerImpl">
+        <property name="userDao"><ref local="userDao"/></property>
+    </bean>
+    <bean id="labManager" class="edu.ucar.cisl.ncarUsers.bll.LabManagerImpl">
+        <property name="labDao"><ref local="labDao"/></property>
+    </bean>
+    <bean id="divisionManager" class="edu.ucar.cisl.ncarUsers.bll.DivisionManagerImpl">
+        <property name="divisionDao"><ref local="divisionDao"/></property>
+    </bean>    
+    <bean id="userDao" class="edu.ucar.cisl.ncarUsers.dal.UserDAOJDBCImpl">
+        <property name="dataSource"><ref local="dataSource"/></property>
+    </bean>     
+    <bean id="labDao" class="edu.ucar.cisl.ncarUsers.dal.LabDAOJDBCImpl">
+        <property name="dataSource"><ref local="dataSource"/></property>
+    </bean>     
+    <bean id="divisionDao" class="edu.ucar.cisl.ncarUsers.dal.DivisionDAOJDBCImpl">
+        <property name="dataSource"><ref local="dataSource"/></property>
+    </bean>       
+</beans>

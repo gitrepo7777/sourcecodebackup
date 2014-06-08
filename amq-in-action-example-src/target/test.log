@@ -1,0 +1,30 @@
+16:32:56,011 | INFO  | main       | faultListableBeanFactory | ort.DefaultListableBeanFactory  414 | Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@c2f48d2: defining beans [org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,org.apache.activemq.xbean.XBeanBrokerService#0]; root of factory hierarchy
+16:32:57,123 | INFO  | main       | BrokerService            | .activemq.broker.BrokerService  462 | Using Persistence Adapter: org.apache.activemq.store.kahadb.KahaDBPersistenceAdapter@6b9fe451
+16:32:57,929 | INFO  | main       | BrokerService            | .activemq.broker.BrokerService  703 | ActiveMQ 5.3.2 JMS Message Broker (amq-broker) is starting
+16:32:57,959 | INFO  | main       | BrokerService            | .activemq.broker.BrokerService  705 | For help or more information please see: http://activemq.apache.org/
+16:32:57,974 | INFO  | JMX connector | ManagementContext        | broker.jmx.ManagementContext$1  106 | JMX consoles can connect to service:jmx:rmi:///jndi/rmi://localhost:1099/jmxrmi
+16:32:58,300 | INFO  | main       | sportServerThreadSupport | t.TransportServerThreadSupport   72 | Listening for connections at: nio://127.0.0.1:61616
+16:32:58,300 | INFO  | main       | TransportConnector       | vemq.broker.TransportConnector  250 | Connector openwire Started
+16:32:58,321 | INFO  | main       | BrokerService            | .activemq.broker.BrokerService  502 | ActiveMQ JMS Message Broker (amq-broker, ID:Y-THINK-55203-1358026378040-0:0) started
+16:32:58,541 | INFO  | ActiveMQ Task | FailoverTransport        | ort.failover.FailoverTransport  756 | Successfully connected to tcp://localhost:61616
+16:32:58,646 | INFO  | ActiveMQ NIO Worker | KahaStore                | e.activemq.kaha.impl.KahaStore  463 | Kaha Store using data directory target\data\amq-broker\tmp_storage
+16:32:58,701 | INFO  | main       | BrokerService            | .activemq.broker.BrokerService  537 | ActiveMQ Message Broker (amq-broker, ID:Y-THINK-55203-1358026378040-0:0) is shutting down
+16:33:00,476 | INFO  | main       | TransportConnector       | vemq.broker.TransportConnector  285 | Connector openwire Stopped
+16:33:00,942 | INFO  | main       | BrokerService            | .activemq.broker.BrokerService  583 | ActiveMQ JMS Message Broker (amq-broker, ID:Y-THINK-55203-1358026378040-0:0) stopped
+16:33:02,613 | INFO  | main       | faultListableBeanFactory | ort.DefaultListableBeanFactory  414 | Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4c9fd062: defining beans [org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,org.apache.activemq.xbean.XBeanBrokerService#0,template,consumerTemplate,camel:beanPostProcessor,camel,activemq]; root of factory hierarchy
+16:33:02,644 | INFO  | JMX connector | ManagementContext        | broker.jmx.ManagementContext$1  106 | JMX consoles can connect to service:jmx:rmi:///jndi/rmi://localhost:1099/jmxrmi
+16:33:02,644 | INFO  | main       | BrokerService            | .activemq.broker.BrokerService  462 | Using Persistence Adapter: MemoryPersistenceAdapter
+16:33:02,644 | INFO  | main       | BrokerService            | .activemq.broker.BrokerService  703 | ActiveMQ 5.3.2 JMS Message Broker (testBroker) is starting
+16:33:02,649 | INFO  | main       | BrokerService            | .activemq.broker.BrokerService  705 | For help or more information please see: http://activemq.apache.org/
+16:33:02,654 | INFO  | main       | StatisticsBrokerPlugin   | .plugin.StatisticsBrokerPlugin   47 | Installing StaticsBroker
+16:33:02,654 | INFO  | main       | StatisticsBroker         | tivemq.plugin.StatisticsBroker  168 | Starting StatisticsBroker
+16:33:02,659 | INFO  | main       | sportServerThreadSupport | t.TransportServerThreadSupport   72 | Listening for connections at: tcp://127.0.0.1:61616
+16:33:02,664 | INFO  | main       | TransportConnector       | vemq.broker.TransportConnector  250 | Connector tcp://localhost:61616 Started
+16:33:02,664 | INFO  | main       | BrokerService            | .activemq.broker.BrokerService  502 | ActiveMQ JMS Message Broker (testBroker, ID:Y-THINK-55203-1358026378040-0:1) started
+16:33:03,504 | INFO  | main       | TransportConnector       | vemq.broker.TransportConnector  250 | Connector vm://testBroker Started
+16:33:03,579 | INFO  | ActiveMQ Task | FailoverTransport        | ort.failover.FailoverTransport  756 | Successfully connected to tcp://localhost:61616
+16:33:03,594 | INFO  | main       | BrokerService            | .activemq.broker.BrokerService  537 | ActiveMQ Message Broker (testBroker, ID:Y-THINK-55203-1358026378040-0:1) is shutting down
+16:33:03,699 | WARN  | timer://foo?fixedRate=true&period=1000 | JmsBinding               | camel.component.jms.JmsBinding  461 | Cannot determine specific JmsMessage type to use from body class. Will use generic JmsMessage. Body is null. If you want to send a POJO then your class might need to implement java.io.Serializable, or you can force a specific type by setting the jmsMessageType option on the JMS endpoint.
+16:33:05,575 | INFO  | main       | TransportConnector       | vemq.broker.TransportConnector  285 | Connector tcp://localhost:61616 Stopped
+16:33:05,586 | INFO  | main       | TransportConnector       | vemq.broker.TransportConnector  285 | Connector vm://testBroker Stopped
+16:33:05,591 | INFO  | main       | BrokerService            | .activemq.broker.BrokerService  583 | ActiveMQ JMS Message Broker (testBroker, ID:Y-THINK-55203-1358026378040-0:1) stopped

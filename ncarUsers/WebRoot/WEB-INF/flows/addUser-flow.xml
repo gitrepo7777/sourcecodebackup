@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-1.0.xsd">
+
+    <start-state idref="addUser"/>
+
+    <view-state id="addUser" view="addUser">
+        <render-actions>
+            <action bean="addUserFormAction" method="initForm"/>
+        </render-actions>
+        <transition on="submit" to="submit">
+            <action bean="addUserFormAction" method="bind"/>
+        </transition>
+    </view-state>
+    
+    <view-state id="summary" view="summary">
+        <transition on="addNewUser" to="addNewUser" />
+    </view-state>
+     
+    <action-state id="submit">
+        <action bean="addUserFormAction" method="submit"/>
+        <transition on="success" to="summary"/>
+    </action-state>
+    
+    <action-state id="addNewUser">
+        <action bean="addUserFormAction" method="addNewUser"/>
+        <transition on="success" to="addUser"/>
+    </action-state>    
+    <import resource="addUser-beans.xml"/>
+    
+</flow>

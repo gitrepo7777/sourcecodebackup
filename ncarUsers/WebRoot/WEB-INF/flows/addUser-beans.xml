@@ -1,0 +1,13 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+                           
+    <bean id="addUserFormAction" class="edu.ucar.cisl.ncarUsers.presentation.brh.AddUserFormAction">
+        <property name="formObjectName" value="addUserForm"/>
+        <property name="formObjectClass" value="edu.ucar.cisl.ncarUsers.presentation.brh.AddUserForm"/>
+        <property name="formObjectScope" value="FLOW"/>
+        <property name="userManager" ref="userManager"/>  
+        <property name="labManager" ref="labManager"/>          
+    </bean>    
+</beans>

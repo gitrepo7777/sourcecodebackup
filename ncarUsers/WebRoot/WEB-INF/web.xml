@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+  
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+           /WEB-INF/classes/applicationContext.xml
+        </param-value>
+    </context-param>
+       
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    
+    <servlet>
+        <servlet-name>rrh</servlet-name>
+        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>edu.ucar.cisl.ncarUsers.presentation.rrh</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>rrh</servlet-name>
+        <url-pattern>/rrh/*</url-pattern>
+    </servlet-mapping>
+     
+    <servlet>
+        <servlet-name>ncarUsers</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>
+                /WEB-INF/ncarUsers-spring-config.xml
+            </param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>ncarUsers</servlet-name>
+        <url-pattern>*.htm</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    </web-app>

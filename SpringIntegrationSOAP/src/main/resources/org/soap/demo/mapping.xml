@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping xmlns="http://castor.exolab.org/" xmlns:cst="http://castor.exolab.org/">
+	<description xmlns="">Castor generated mapping file
+	</description>
+	<class name="org.soap.demo.Data">
+		<description>Default mapping for class
+			org.soap.demo.Data</description>
+		<map-to xml="data" />		
+		<field name="number1" type="int">
+			<bind-xml name="number1"/>
+		</field>
+		<field name="number2" type="int">
+			<bind-xml name="number2"/>
+		</field>
+	</class>
+</mapping>
